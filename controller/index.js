@@ -1,3 +1,3 @@
 import * as exam from './exam.controller.js'
-
-export {exam}
+import * as student from './student.controller.js'
+export {student, exam}

@@ -1,5 +1,4 @@
-
-import Exam from "../model/Exam.js";
+import Exam from "../model/Exam.js"
 
 export const create =  async (req, res) => {
     try {

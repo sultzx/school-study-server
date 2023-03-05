@@ -4,6 +4,7 @@ import config from 'config'
 import cors from 'cors'
 
 import studyRouter from './route/study.routes.js'
+import userRouter from './route/user.routes.js'
 
 const app = express()
 
@@ -25,6 +26,7 @@ const start = async () => {
     }
 
     app.use('/api/study', studyRouter)
+    app.use('/api/user', userRouter)
 
     app.listen(PORT, (error) => {
         if(error) {
