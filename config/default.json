@@ -1,0 +1,7 @@
+{
+    "port": {
+        "1": 5000,
+        "2": 4444
+    },
+    "mongodbUrl": "mongodb+srv://sultzx:ZpfWDEHF6x9gGUx1@cluster0.ja1ehfb.mongodb.net/studyDB?retryWrites=true&w=majority"
+}
