@@ -5,8 +5,11 @@ export const registration = [
     body('lastname').isString(),
     body('firstname').isString(),
     body('patronymic').isString(),
-    body('phone').isString(),
-    body('address').isString(),
+    body('phoneNumber').isLength({
+        min: 11
+    }).isString(),
+    body('address').optional().isString(),
+    body('role').optional().isString(),
     body('password').isString(),
 ]
 

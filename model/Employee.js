@@ -11,10 +11,11 @@ const schema = new mongoose.Schema({
     firtname: String,
     patronymic: String,
     phone: String,
+    role: String,
     subject: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Subject'
     }
 }, {timestamps: true})
 
-export default mongoose.model('Teacher', schema)
+export default mongoose.model('Employee', schema)
