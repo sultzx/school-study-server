@@ -20,26 +20,30 @@ export const login = [
 ]
 
 export const updateProfile = [
-    body('lastname').isString(),
-    body('firstname').isString(),
-    body('patronymic').isString(),
-    body('birthday').isString(),
-    body('phone').isString(),
-    body('address').isString(),
-    body('class').isString(),
-    body('abcd').isString(),
-    body('father_lname').isString(),
-    body('father_fname').isString(),
-    body('father_patron').isString(),
-    body('father_phone').isString(),
-    body('mother_lname').isString(),
-    body('mother_fname').isString(),
-    body('mother_patron').isString(),
-    body('mother_phone').isString(),
-    body('avatar').isString(),
+    body('lastname').optional().isString(),
+    body('firstname').optional().isString(),
+    body('patronymic').optional().isString(),
+    body('birthday').optional().isString(),
+    body('phone').optional().isString(),
+    body('address').optional().isString(),
+    body('class').optional().isString(),
+    body('abcd').optional().isString(),
+    body('father_lname').optional().isString(),
+    body('father_fname').optional().isString(),
+    body('father_patron').optional().isString(),
+    body('father_phone').optional().isString(),
+    body('mother_lname').optional().isString(),
+    body('mother_fname').optional().isString(),
+    body('mother_patron').optional().isString(),
+    body('mother_phone').optional().isString(),
 ]
 
 export const exam = [
     body('title').isString(),
+    body('img').optional().isString(),
+]
+
+export const subject = [
+    body('name').isString(),
     body('img').optional().isString(),
 ]

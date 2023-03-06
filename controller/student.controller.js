@@ -2,6 +2,7 @@ import Student from "../model/Student.js";
 import bcrypt from "bcrypt";
 import jwt from 'jsonwebtoken'
 import config from 'config'
+import Employee from "../model/Employee.js";
 
 export const registration = async (req, res) => {
   try {
@@ -123,18 +124,62 @@ export const me = async (req, res) => {
     try {
         const userId = req.userId
 
-        const student = await Student.findById(userId)
+        let user = ''
 
-        if (!student) {
-            return res.status(404).json({
-                message: 'Қолданушы желіде жоқ'
-            })
-        }
+        if (Boolean(await Student.findById(userId))) {
 
-        const {hashedPassword, ...userData} = student._doc
+          user = await Student.findById(userId)
 
-        res.status(200).json(userData)
+          const {hashedPassword, ...userData} = user._doc
+
+          res.status(200).json(userData)
+        } 
+
+        if (Boolean(await Employee.findById(userId))) {
+
+          user = await Employee.findById(userId)
+          .populate('classrooms')
+          .populate('subject').exec()
+
+          const {hashedPassword, ...userData} = user._doc
+
+          res.status(200).json(userData)
+
+        } 
+
     } catch (error) {
         res.status(500).json(error.message)
     }
 }
+
+export const update = async (req, res) => {
+  try {
+    const { lastname, firstname, patronymic, phone, address,
+            father_lname, father_fname, father_patron, father_phone,
+            mother_lname, mother_fname, mother_patron, mother_phone } = req.body;
+
+    const userId = req.userId
+
+    const student = await Student.findById(userId)
+
+
+    await Student.updateOne(
+      {
+        _id: student._id,
+      },
+      {
+        lastname, firstname, patronymic, phone, address,
+        father_lname, father_fname, father_patron, father_phone,
+        mother_lname, mother_fname, mother_patron, mother_phone
+      }
+    );
+
+
+    res.status(200).json({
+      success: true
+    });
+  } catch (error) {
+    res.status(500).json(error.message,
+);
+  }
+};

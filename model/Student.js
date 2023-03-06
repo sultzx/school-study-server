@@ -16,8 +16,10 @@ const schema = new mongoose.Schema({
     birthday: String,
     phone: String,
     address: String,
-    class: String,
-    abcd: String,
+    classroom: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Classroom'
+    },
     father_lname: String,
     father_fname: String,
     father_patron: String,

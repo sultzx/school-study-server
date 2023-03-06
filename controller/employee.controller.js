@@ -6,7 +6,7 @@ import config from 'config'
 export const registration = async (req, res) => {
     try {
         const {email, password, lastname, firstname, patronymic, phoneNumber, role} = req.body
-
+        
         const salt = await bcrypt.genSalt(6);
 
         const hash = await bcrypt.hash(password, salt);
@@ -68,7 +68,7 @@ export const login = async (req, res) => {
           if (validateEmail(login)) {
             employee = await Employee.findOne({
                 email: login
-            })
+            }).populate('subject').exec()
             if (!employee) {
                 return res.status(404).json({
                   message: `Қызметкер: '${login}' желіде жоқ`,
@@ -77,7 +77,7 @@ export const login = async (req, res) => {
         } else {
             employee = await Employee.findOne({
                 phone: login
-            })
+            }).populate('subject').exec()
             if (!employee) {
                 return res.status(404).json({
                   message: `Қызметкер: '${login}' желіде жоқ`,
@@ -122,7 +122,7 @@ export const me = async (req, res) => {
     try {
         const userId = req.userId
 
-        const employee = await Employee.findById(userId)
+        const employee = await Employee.findById(userId).populate('subject').exec()
 
         if (!employee) {
             return res.status(404).json({
@@ -138,3 +138,29 @@ export const me = async (req, res) => {
         res.status(500).json(error.message)
     }
 }
+
+
+export const update = async (req, res) => {
+  try {
+    const { lastname, firstname, patronymic, phone, subject } = req.body;
+
+    const userId = req.userId
+
+    const employee = await Employee.findById(userId)
+
+    await Employee.updateOne(
+      {
+        _id: employee._id,
+      },
+      {
+        lastname, firstname, patronymic, phone, subject
+      }
+    );
+
+    res.status(200).json({
+      success: true
+    });
+  } catch (error) {
+    res.status(500).json(error.message);
+  }
+};

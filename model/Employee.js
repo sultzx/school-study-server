@@ -8,14 +8,18 @@ const schema = new mongoose.Schema({
     },
     hashedPassword: String,
     lastname: String,
-    firtname: String,
+    firstname: String,
     patronymic: String,
     phone: String,
     role: String,
     subject: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Subject'
-    }
+    },
+    classrooms: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Classroom'
+    }]
 }, {timestamps: true})
 
 export default mongoose.model('Employee', schema)
