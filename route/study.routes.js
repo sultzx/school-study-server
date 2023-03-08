@@ -8,5 +8,7 @@ const studyRouter = express.Router()
 studyRouter.post('/subject', validation.subject, validationHandler, controller.subject.create)
 studyRouter.post('/exam', validation.exam, validationHandler, controller.exam.create)
 studyRouter.post('/classroom', checkAuth, controller.classroom.create)
+studyRouter.delete('/classroom/:id', checkAuth, controller.classroom.remove)
+studyRouter.get('/classroom/all', checkAuth, controller.classroom.all)
 
 export default studyRouter

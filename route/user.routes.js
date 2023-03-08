@@ -15,6 +15,7 @@ userRouter.post('/employee/auth/login', validation.login, validationHandler, con
 userRouter.patch('/employee/me/update', checkAuth, validation.updateProfile, validationHandler, controller.employee.update)
 
 userRouter.get('/me', checkAuth, controller.student.me)
-
-
+userRouter.get('/all-students', checkAuth, controller.student.all)
+userRouter.patch('/student-status', checkAuth, controller.student.setStudentAccess)
+userRouter.patch('/student-classroom', checkAuth, controller.student.setStudentClassroom)
 export default userRouter

@@ -148,14 +148,32 @@ export const update = async (req, res) => {
 
     const employee = await Employee.findById(userId)
 
-    await Employee.updateOne(
-      {
-        _id: employee._id,
-      },
-      {
-        lastname, firstname, patronymic, phone, subject
-      }
-    );
+    switch (employee.role) {
+      case 'teacher': 
+        await Employee.updateOne(
+          {
+            _id: employee._id,
+          },
+          {
+            lastname, firstname, patronymic, phone, subject
+          }
+        );
+      break;
+      case 'moderator': 
+      await Employee.updateOne(
+        {
+          _id: employee._id,
+        },
+        {
+          lastname, firstname, patronymic, phone
+        }
+      );
+      break;
+
+    }
+
+
+
 
     res.status(200).json({
       success: true

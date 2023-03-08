@@ -10,7 +10,11 @@ const schema = new mongoose.Schema({
     students: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Student'
-    }]
+    }],
+    teacher: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Employee'
+    }
 }, {timestamps: true})
 
 export default mongoose.model('Classroom', schema)

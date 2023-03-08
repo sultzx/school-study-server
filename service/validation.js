@@ -23,7 +23,7 @@ export const updateProfile = [
     body('lastname').optional().isString(),
     body('firstname').optional().isString(),
     body('patronymic').optional().isString(),
-    body('birthday').optional().isString(),
+        body('birthday').optional().isString(),
     body('phone').optional().isString(),
     body('address').optional().isString(),
     body('class').optional().isString(),
