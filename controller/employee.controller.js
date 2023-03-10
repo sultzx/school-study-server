@@ -182,3 +182,19 @@ export const update = async (req, res) => {
     res.status(500).json(error.message);
   }
 };
+
+export const all = async (req, res) => {
+  try {
+
+    const employees = await Employee.find()
+    .populate("classrooms")
+    .populate("subject")
+    .exec();
+
+    res.status(200).json(employees);
+
+  } catch (error) {
+
+    res.status(500).json(error.message);
+  }
+};

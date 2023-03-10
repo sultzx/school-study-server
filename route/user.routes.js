@@ -16,6 +16,9 @@ userRouter.patch('/employee/me/update', checkAuth, validation.updateProfile, val
 
 userRouter.get('/me', checkAuth, controller.student.me)
 userRouter.get('/all-students', checkAuth, controller.student.all)
+userRouter.get('/all-employees', checkAuth, controller.employee.all)
 userRouter.patch('/student-status', checkAuth, controller.student.setStudentAccess)
 userRouter.patch('/student-classroom', checkAuth, controller.student.setStudentClassroom)
+userRouter.patch('/delete-student-classroom', checkAuth, controller.student.deleteStudentFromClassroom)
+
 export default userRouter

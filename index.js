@@ -5,14 +5,17 @@ import cors from 'cors'
 
 import studyRouter from './route/study.routes.js'
 import userRouter from './route/user.routes.js'
+import uploadRouter from './route/upload.routes.js'
 
 const app = express()
 
 const PORT = config.get('port.1') || config.get('port.2')
 
 app.use(express.json())
-app.use('/uploads', express.static('uploads'))
+
+app.use('/upload', express.static('upload'))
 app.use('/images', express.static('images'))
+
 app.use(cors())
 
 
@@ -26,6 +29,7 @@ const start = async () => {
     }
 
     app.use('/api/study', studyRouter)
+    app.use('/api/upload', uploadRouter)
     app.use('/api/user', userRouter)
 
     app.listen(PORT, (error) => {

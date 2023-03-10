@@ -19,7 +19,8 @@ const schema = new mongoose.Schema({
     classrooms: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Classroom'
-    }]
+    }],
+    avatar: String
 }, {timestamps: true})
 
 export default mongoose.model('Employee', schema)

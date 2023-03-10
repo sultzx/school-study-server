@@ -127,7 +127,9 @@ export const me = async (req, res) => {
     let user = "";
 
     if (Boolean(await Student.findById(userId))) {
-      user = await Student.findById(userId);
+      user = await Student.findById(userId)
+      .populate("classroom")
+      .exec();
 
       const { hashedPassword, ...userData } = user._doc;
 
@@ -254,6 +256,8 @@ export const setStudentClassroom = async (req, res) => {
 
     const classroom = await Classroom.findById(classroomId);
 
+    const classrooms= await Classroom.find()
+
       await Student.updateOne(
         {
           _id: student._id,
@@ -272,6 +276,7 @@ export const setStudentClassroom = async (req, res) => {
       })
 
     if (bool) {
+
             classroom.students.push(student);
             await classroom.save();
 
@@ -286,6 +291,36 @@ export const setStudentClassroom = async (req, res) => {
       });
     }
   } catch (error) {
-    res.status(500).json(error.message);
+    
   }
 };
+
+export const deleteStudentFromClassroom = async (req, res) => {
+
+  try {
+    const {studentId, classroomId} = req.body
+
+    const student = await Student.findById(studentId)
+
+    const classroom = await Classroom.findById(classroomId)
+
+    classroom.students = classroom.students.filter(stud => 
+      stud._id == student._id
+      )
+
+    classroom.save()
+
+    await Student.updateOne({
+      _id: student._id
+    }, {
+      classroom: null
+    })
+
+    res.status(200).json({success: true,
+      student: student
+    });
+
+  } catch (error) {
+    res.status(500).json(error.message);
+  }
+}

@@ -31,7 +31,8 @@ const schema = new mongoose.Schema({
     status: {
         type: String,
         default: 'denied'
-    }
+    },
+    avatar: String
 }, {timestamps: true})
 
 export default mongoose.model('Student', schema)
