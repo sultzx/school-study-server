@@ -3,6 +3,7 @@
         "1": 5000,
         "2": 4444
     },
+    "dbUrl": "mongodb://localhost:27017/",
     "mongodbUrl": "mongodb+srv://sultzx:ZpfWDEHF6x9gGUx1@cluster0.ja1ehfb.mongodb.net/studyDB?retryWrites=true&w=majority",
     "jwt_key": "qwerty"
 }

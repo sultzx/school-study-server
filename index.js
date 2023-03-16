@@ -22,7 +22,7 @@ app.use(cors())
 const start = async () => {
     try {
         await mongoose.set('strictQuery', true)
-        await mongoose.connect(config.get('mongodbUrl'))
+        await mongoose.connect(config.get('dbUrl'))
         console.log(`database OK\tname: ${mongoose.connection.name}`)
     } catch (error) {
         console.log(`database ERROR\tcodename: ${error.codeName}`)

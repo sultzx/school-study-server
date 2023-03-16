@@ -18,7 +18,7 @@ export const login = [
     body('phone').optional().isString(),
     body('password').isString()
 ]
-
+ 
 export const updateProfile = [
     body('lastname').optional().isString(),
     body('firstname').optional().isString(),

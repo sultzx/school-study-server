@@ -12,6 +12,7 @@ const schema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Subject'
     },
+    clss: String,
     teacher: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Employee'
