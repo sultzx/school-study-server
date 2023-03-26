@@ -1,14 +1,15 @@
-import mongoose from 'mongoose'
+import mongoose from "mongoose";
 
-const schema = new mongoose.Schema({
+const schema = new mongoose.Schema(
+  {
     email: {
-        type: String,
-        unique: true,
-        required: true
+      type: String,
+      unique: true,
+      required: true,
     },
     hashedPassword: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     lastname: String,
     firstname: String,
@@ -17,8 +18,8 @@ const schema = new mongoose.Schema({
     phone: String,
     address: String,
     classroom: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Classroom'
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Classroom",
     },
     father_lname: String,
     father_fname: String,
@@ -28,11 +29,47 @@ const schema = new mongoose.Schema({
     mother_fname: String,
     mother_patron: String,
     mother_phone: String,
-    status: {
-        type: String,
-        default: 'denied'
+    subjects: {
+      kazakh: {
+        attending: [
+          {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Lesson",
+          },
+        ],
+      },
+      math: {
+        attending: [
+          {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Lesson",
+          },
+        ],
+      },
+      history: {
+        attending: [
+          {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Lesson",
+          },
+        ],
+      },
+      english: {
+        attending: [
+          {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Lesson",
+          },
+        ],
+      },
     },
-    avatar: String
-}, {timestamps: true})
+    status: {
+      type: String,
+      default: "denied",
+    },
+    avatar: String,
+  },
+  { timestamps: true }
+);
 
-export default mongoose.model('Student', schema)
+export default mongoose.model("Student", schema);

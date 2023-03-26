@@ -18,6 +18,15 @@ export const create = async (req, res) => {
     }
 }
 
+export const all = async (req, res) => {
+  try {
+    const subjects = await Subject.find().populate('chapters').exec()
+    res.status(200).json(subjects)
+  } catch (error) {
+    res.status(500).json(error.message)
+  }
+}
+
 export const remove = async (req, res) => {
     try {
         const {subjectId} = req.body

@@ -10,6 +10,9 @@ userRouter.post('/student/auth/registration', validation.registration, validatio
 userRouter.post('/student/auth/login', validation.login, validationHandler, controller.student.login)
 userRouter.patch('/student/me/update', checkAuth, validation.updateProfile, validationHandler, controller.student.update )
 
+userRouter.post('/student/me/attending', checkAuth, controller.act.attending )
+
+
 userRouter.post('/employee/auth/registration', validation.registration, validationHandler, controller.employee.registration)
 userRouter.post('/employee/auth/login', validation.login, validationHandler, controller.employee.login)
 userRouter.patch('/employee/me/update', checkAuth, validation.updateProfile, validationHandler, controller.employee.update)

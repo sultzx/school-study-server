@@ -1,5 +1,7 @@
 import Lesson from '../model/Lesson.js'
 import Chapter from '../model/Chapter.js'
+import Employee from '../model/Employee.js'
+import Subject from '../model/Subject.js'
 
 export const createLesson = async (req, res) => {
     try {
@@ -45,13 +47,24 @@ export const createChapter = async (req, res) => {
 
         const {name, clss, img} = req.body
 
+        const userId = req.userId
+
+        const teacher = await Employee.findById(userId)
+
+        const subject = await Subject.findById(teacher.subject._id) 
+
         const document = new Chapter({
             name,
+            subject: subject._id,
             class: clss,
             img
         })
 
         const chapter = await document.save()
+
+        subject.chapters.push(chapter)
+
+        await subject.save()
 
         res.status(200).json(chapter)
 

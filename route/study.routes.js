@@ -14,11 +14,26 @@ studyRouter.post('/send-message', checkAuth, controller.question.sendQuestion)
 studyRouter.get('/all-questions',checkAuth, controller.question.getAllQuestions)
 studyRouter.patch('/answer-for-question', checkAuth, controller.question.answerForQuestion)
 
+studyRouter.get('/all-subjects', checkAuth, controller.subject.all)
+
 studyRouter.post('/create-chapter', checkAuth, controller.lesson.createChapter)
 studyRouter.get('/all-chapters', checkAuth, controller.lesson.allChapters)
 
 studyRouter.post('/create-lesson', checkAuth, controller.lesson.createLesson )
 studyRouter.get('/all-lessons', checkAuth, controller.lesson.allLessons)
 
+studyRouter.post('/create-test-question', checkAuth, controller.quiz.create)
+studyRouter.get('/all-test-questions', checkAuth, controller.quiz.all)
+
+studyRouter.post('/create-exam-question', checkAuth, controller.exam.create)
+studyRouter.get('/all-exam-questions', checkAuth, controller.exam.all)
+
+studyRouter.post('/quiz-answer', checkAuth, controller.act.quizAnswer)
+studyRouter.get('/all-quiz-answers', checkAuth, controller.act.allQuizAnswers)
+
+studyRouter.post('/exam-answer', checkAuth, controller.act.examAnswer)
+studyRouter.get('/all-exam-answers', checkAuth, controller.act.allExamAnswers)
+
+studyRouter.patch('/exam-answer-grade', checkAuth, controller.act.checkExamAnswer)
 
 export default studyRouter

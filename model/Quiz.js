@@ -2,6 +2,11 @@ import mongoose from "mongoose";
 
 const schema = new mongoose.Schema({
     question: String,
+    A: String,
+    B: String,
+    C: String,
+    D: String,
+    correct: String,
     lesson: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Lesson'
@@ -10,15 +15,13 @@ const schema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Chapter'
     },
-    subject: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Subject'
-    },
     classroom: String,
     teacher: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Employee'
     }
-}, {timestamps: true})
+}, {
+    timestamps: true
+})
 
-export default mongoose.model('Exam', schema)
+export default mongoose.model('Quiz', schema)

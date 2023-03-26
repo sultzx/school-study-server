@@ -3,9 +3,9 @@ import mongoose from "mongoose";
 const schema = new mongoose.Schema({
     name: String,
     img: String,
-    lessons: [{
+    chapters: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Lesson'
+        ref: 'Chapter'
     }]
 }, {timestamps: true})
 
